@@ -17,7 +17,7 @@ def print_row(row):
     print(position.getText(), ' ',score, ' ', name)
 
 def print_leader_board():
-    leaders = 'https://adventofcode.com/2023/leaderboard/private/view/1031380'
+    leaders = 'https://adventofcode.com/2024/leaderboard/private/view/1031380'
     r = requests.get(leaders, cookies=make_cookie_jar())
     soup = bs4.BeautifulSoup(r.content, 'html.parser')
     people = soup.select('.privboard-row')
