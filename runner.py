@@ -12,9 +12,10 @@ def make_cookie_jar():
 
 def print_row(row):
     position = row.select_one('.privboard-position')
-    score = position.next_sibling
-    name = row.select_one('.privboard-name').getText()
-    print(position.getText(), ' ',score, ' ', name)
+    if position:
+        score = position.next_sibling
+        name = row.select_one('.privboard-name').getText()
+        print(position.getText(), ' ',score, ' ', name)
 
 def print_leader_board():
     leaders = 'https://adventofcode.com/2024/leaderboard/private/view/1031380'
@@ -44,7 +45,7 @@ def get_sample_data(day, year=2024):
 
 
 if __name__ == '__main__':
-    # print_leader_board()
-    day = 2
-    get_input_file(day)
-    get_sample_data(day)
+    print_leader_board()
+    # day = 5
+    # get_input_file(day)
+    # get_sample_data(day)
