@@ -14,4 +14,4 @@ In order to activate this vitrual environment in the shell, run the following co
 To deactivate it run `deactivate`
 
 ## Automatically download the input files for each day
-Copy the session cookie from the `Developer Tools > Storage > Cookies` and paste it into the file .env
+Copy the session cookie from the `Developer Tools > Storage > Cookies` and paste it into the file .env. The .env file should look like SECRET=.........
