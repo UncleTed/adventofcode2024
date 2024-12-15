@@ -9,7 +9,7 @@ class Stone:
     def __init__(self, value):
         self.next:Stone = None
         self.prev: Stone = None
-        self.value: int = value
+        self.value: str = value
 
 
 class StraightLine:
@@ -31,7 +31,7 @@ class StraightLine:
         self.head = new_node
         
     def insert_at_end(self, value):
-        new_stone = Stone(value)
+        new_stone = Stone(str(value))
         if self.head is None:
             self.head = new_stone
         else:
@@ -44,6 +44,22 @@ class StraightLine:
         new_node.next = p.next
         p.next = new_node
 
+    def split(self, splittie: Stone, value: str)->Stone:
+        left, right = self._split_in_half(value)
+        splittie.value = left
+        new_stone = Stone(right)
+        new_stone.next = splittie.next
+        splittie.next = new_stone
+        return new_stone
+        
+    def size(self)->int:
+        counter = 0
+        current = self.head
+        while(current is not None):
+            current = current.next
+            counter += 1
+
+        return counter
     
     def _get_last_node(self)-> Stone:
         current = self.head
@@ -62,3 +78,9 @@ class StraightLine:
                 current = current.next
             
     
+    def _split_in_half(self, value:str):
+        digits = value
+        left= digits[0:int(len(digits)/2)]
+        right = digits[int(len(digits)/2):]
+        right = str(int(right))
+        return left, right
