@@ -31,11 +31,11 @@ class StraightLine:
         self.head = new_node
         
     def insert_at_end(self, value):
-        new_node = Stone(value)
+        new_stone = Stone(value)
         if self.head is None:
-            self.head = new_node
+            self.head = new_stone
         else:
-            self._get_last_node().next = new_node
+            self._get_last_node().next = new_stone
 
     def insert_in_middle(self, position: int, value: int):
         new_node = Stone(value)

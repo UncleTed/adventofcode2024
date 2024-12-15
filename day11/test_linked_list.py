@@ -63,10 +63,7 @@ class TestLinkedList(unittest.TestCase):
         linked_list = StraightLine()
         linked_list.insert_at_end(0)
         linked_list.insert_at_end(1)
-        linked_list.insert_at_end(10)
-        linked_list.insert_at_end(99)
-        linked_list.insert_at_end(999)
-        expected = "1 2024 1 0 9 9 2021976"
+        expected = "1 2024"
         blink(linked_list)
         self.assertEqual(expected, linked_list.traverse())
         

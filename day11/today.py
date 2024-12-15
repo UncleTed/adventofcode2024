@@ -13,8 +13,8 @@ def _has_even_number_of_digits( stone: Stone)-> bool:
     return len(str(stone.value)) % 2
 
 
-def blink(linked_list: StraightLine):
-    current = linked_list.head
+def blink(straight_line: StraightLine):
+    current = straight_line.head
     while(current is not None):
         if current.value == 0:
             current.value = 1
