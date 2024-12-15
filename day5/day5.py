@@ -18,7 +18,7 @@ def check_updates_against_rules(rules: list[str], updates: list[str]):
     return True
 
 def part1():
-    lines = get_input('long.txt')
+    lines = get_input('short.txt')
     reading_rules = True
     page_ordering_rules = []
     updates = []
@@ -35,7 +35,7 @@ def part1():
         one_set_of_page_updates = updates.pop(0)
         middle_page_number = one_set_of_page_updates[int(len(one_set_of_page_updates)/2)]
         page_updates = generate_updates(one_set_of_page_updates.pop(0), one_set_of_page_updates)
-        # print('page update: ', page_updates)
+        print('page update: ', page_updates)
         if check_updates_against_rules(page_ordering_rules, page_updates):
             total_middle_page_numbers = total_middle_page_numbers + int(middle_page_number)
     print('part 1: ', total_middle_page_numbers)
