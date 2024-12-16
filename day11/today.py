@@ -5,6 +5,8 @@ import time
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+from cProfile import Profile
+from pstats import SortKey, Stats
 
 
 def get_input(file_name):
@@ -14,7 +16,7 @@ def get_input(file_name):
 
 
 def _has_even_number_of_digits( stone: Stone)-> bool:
-    return len(str(stone.value)) % 2 == 0
+    return len(stone.value) % 2 == 0
 
 
 def blink(straight_line: StraightLine):
@@ -47,21 +49,7 @@ def part1():
     # 38_253 is too low
     # 190865
     # 311_887 is too high
-    # straight_line = StraightLine()
-    # straight_line.insert_at_end(125)
-    # straight_line.insert_at_end(17)
-    # blink(straight_line)
-    # print("1 blink ", straight_line.traverse())
-    # blink(straight_line)
-    # print("2 blink ", straight_line.traverse())
-    # blink(straight_line)
-    # print("3 blink ", straight_line.traverse())
-    # blink(straight_line)
-    # print("4 blink ", straight_line.traverse())
-    # blink(straight_line)
-    # print("5 blink ", straight_line.traverse())
-    # blink(straight_line)
-    # print("6 blink ", straight_line.traverse())
+
 
 
 def timing_graph():
@@ -81,15 +69,20 @@ def part2():
     for value in lines[0].split(' '):
         straight_line.insert_at_end(value)
 
-    for i in range(75):
+    for i in range(30):
         tic = time.perf_counter()
         blink(straight_line)
         toc = time.perf_counter()
-        print(f"{i} {toc - tic}")
+        print(f"{i} {toc - tic} ")
     print("Part 2 : ",straight_line.size())
 
 
 if __name__ == "__main__":
     # part1()
     # part2()
-    timing_graph()
+    with Profile() as profile:
+        print(f"{part2() } ")
+        Stats(profile).strip_dirs().sort_stats(SortKey.CALLS).print_stats()
+         
+         
+    # timing_graph()

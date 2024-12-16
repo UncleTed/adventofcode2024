@@ -79,8 +79,9 @@ class StraightLine:
             
     
     def _split_in_half(self, value:str):
-        digits = value
-        left= digits[0:int(len(digits)/2)]
-        right = digits[int(len(digits)/2):]
+        middle = len(value)//2
+        left= value[0:middle]
+        right = value[middle:]
         right = str(int(right))
         return left, right
+    
