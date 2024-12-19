@@ -15,6 +15,7 @@ class Stone:
 class StraightLine:
     def __init__(self):
         self.head:Stone = None
+        self.tail: Stone = None
 
     def traverse(self) -> str:
         current = self.head
@@ -34,8 +35,10 @@ class StraightLine:
         new_stone = Stone(str(value))
         if self.head is None:
             self.head = new_stone
+            self.tail = new_stone
         else:
-            self._get_last_node().next = new_stone
+            self.tail.next = new_stone
+            self.tail = new_stone
 
     def insert_in_middle(self, position: int, value: int):
         new_node = Stone(value)

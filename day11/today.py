@@ -69,12 +69,14 @@ def part2():
     for value in lines[0].split(' '):
         straight_line.insert_at_end(value)
 
-    for i in range(30):
+    for i in range(37):
         tic = time.perf_counter()
         blink(straight_line)
         toc = time.perf_counter()
         print(f"{i} {toc - tic} ")
     print("Part 2 : ",straight_line.size())
+    with open('37_out.txt', 'w') as out_file:
+        out_file.write(straight_line.traverse())
 
 
 if __name__ == "__main__":
