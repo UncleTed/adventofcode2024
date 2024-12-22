@@ -16,7 +16,7 @@ class Button:
     y: int
 
 def total_for_button(solution):
-    answer = reduce(lambda x,y: math.ceil(x)*3 + math.ceil(y)*1, solution)
+    answer = reduce(lambda x,y: math.ceil(x)*3 + math.ceil(y), solution)
     print(answer)
     return answer
 
@@ -37,13 +37,12 @@ def part1():
             prize_y = re.findall(r'Y=(\d+)',l)
             buttons = np.array([[A.x, B.x], [A.y, B.y]])
             answers = np.array([int(prize_x[0]), int(prize_y[0])])
-            solution = np.linalg.solve(buttons, answers)
-            if (solution[0] > 0 ) and (solution[1] > 0 ):
-                if solution[0] + solution[1] <=100:
-            
-            #if (solution[0] > 0 and solution[0] <= 100) and (solution[1] > 0 and solution[1] <= 100):
-                    print(solution)
-                    total += total_for_button(solution)
+            solution = np.rint(np.linalg.solve(buttons, answers))
+            if np.all(buttons @ solution == answers):
+                total += total_for_button(solution)
+            # if (solution[0] > 0 and solution[0] <= 100) and (solution[1] > 0 and solution[1] <= 100):
+            #         print(solution)
+                    
 
     print(total)
     #31623.69001650189 is too high
@@ -51,6 +50,7 @@ def part1():
     #30391 wrong answer for 99 times
     #31191 wrong answer for soltions must also be positive
     # 31324 math.ceil still not right grrrr
+    # 28753 apparently you can generate a solution that doesn't work
 
 
 
