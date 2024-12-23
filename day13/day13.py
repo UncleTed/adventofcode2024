@@ -36,8 +36,9 @@ def part1():
             prize_x = re.findall(r'X=(\d+)', l)
             prize_y = re.findall(r'Y=(\d+)',l)
             buttons = np.array([[A.x, B.x], [A.y, B.y]])
-            answers = np.array([int(prize_x[0]), int(prize_y[0])])
+            answers = np.array([int(prize_x[0])+10000000000000, int(prize_y[0])+10000000000000])
             solution = np.rint(np.linalg.solve(buttons, answers))
+            print(answers)
             if np.all(buttons @ solution == answers):
                 total += total_for_button(solution)
             # if (solution[0] > 0 and solution[0] <= 100) and (solution[1] > 0 and solution[1] <= 100):
@@ -56,6 +57,7 @@ def part1():
 
 def part2():
     pass
+    #44616 is too low
 
 if __name__ == "__main__":
     part1()
