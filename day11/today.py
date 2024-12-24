@@ -3,10 +3,12 @@ from dataclasses import dataclass
 from list_node import StraightLine, Stone
 import time
 import matplotlib
-matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from cProfile import Profile
 from pstats import SortKey, Stats
+
+#92395903033322543477554551 
 
 
 def get_input(file_name):
