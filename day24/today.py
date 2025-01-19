@@ -26,22 +26,37 @@ class Connection:
     def calculate(self)->bool:
         try:
             self.output.value = self.operation(self.wire1, self.wire2)
-            return True
+            if self.output.value >= 0:
+                print('successful calc: ', self)
+                return True
+            else:
+                print('bad calc:' ,self)
+                return False                
+                
+                
+
         except Exception as e:
-            print('----------------------' ,self)
+            print('bad calc:' ,self)
             return False
     
     def __repr__(self):
         return f'{self.wire1} {self.operation} {self.wire2} -> {self.output}'
 
 def and_gate(a: wire,b: wire) -> int:
-    return a.value and b.value
+    if a.value >= 0 and b.value >= 0:
+        return a.value and b.value
+    return -33
+    
 
 def or_gate(a:wire , b: wire)-> int:
-    return a.value or b.value
+    if a.value >= 0 and b.value >= 0:
+        return a.value or b.value
+    return -33
 
 def xor_gate(a:wire, b:wire)->int:
-    return a.value ^ b.value
+    if a.value >= 0 and b.value >= 0:
+        return a.value ^ b.value
+    return -33
 
 def find_wire(wires: list[wire], name: str)->wire:
     for w in wires:
@@ -61,15 +76,16 @@ def run_all_calculation(connections: list[Connection]):
         for c in connections:
             result = c.calculate()
             if result == False:
-                print(c)
+                print('WRONG !!!!', c)
                 do_it_again = True
+                
             
 
 
 def part1():
     wires = []
     connections: list[Connection] = list()
-    lines = get_input('medium.txt')
+    lines = get_input('day24/short.txt')
     for l in lines:
         if ":" in l:
             wires.append(wire(l.split(":")[0], int(l.split(":")[1])))
@@ -81,15 +97,13 @@ def part1():
                 operator = or_gate
             elif operator == "XOR":
                 operator = xor_gate
-            first_wire = wire(wire1, None)
-            if wire1 in wires:
-                first_wire = find_wire(wires, wire1)
-
-
-            second_wire = wire(wire2, None)
-            if wire2 in wires:
-                second_wire = find_wire(wires, wire2)
-            output_wire = wire(output, None)
+            first_wire = find_wire(wires, wire1)
+            if first_wire is None:
+                first_wire = wire(wire1, -1)
+            second_wire = find_wire(wires, wire2)
+            if second_wire is None:
+                second_wire = wire(wire2, -1)
+            output_wire = wire(output, -1)
             wires.append(output_wire)
             connections.append(Connection(first_wire, second_wire,operator, output_wire))
 
@@ -97,7 +111,7 @@ def part1():
     # print([c for c in connections])
     print(wires)
 
-    # run_all_calculation(connections)
+    run_all_calculation(connections)
 
     bits = [w.value for w in wires if w.name.startswith('z')]
     bits.reverse()

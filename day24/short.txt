@@ -4,7 +4,11 @@ x02: 1
 y00: 0
 y01: 1
 y02: 0
------
-x00 AND y00 -> z00
-x01 XOR y01 -> z01
-x02 OR y02 -> z02
+
+abc AND def -> z00
+def OR ghi -> z01
+abc XOR y02 -> z03
+x00 AND y00 -> abc
+x01 XOR y01 -> def
+x02 OR y02 -> ghi
+
