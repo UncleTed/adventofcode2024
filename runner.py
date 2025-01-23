@@ -45,7 +45,7 @@ def get_sample_data(day, year=2024):
 
 
 if __name__ == '__main__':
-    print_leader_board()
-    day = 24
+    # print_leader_board()
+    day = 16
     get_input_file(day)
     get_sample_data(day)
